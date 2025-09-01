@@ -5,19 +5,5 @@
       "src": "index.html",
       "use": "@vercel/static"
     }
-  ],
-  "routes": [
-    {
-      "src": "/registration.pdf",
-      "dest": "/registration.pdf",
-      "headers": {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": "attachment; filename=\"registration.pdf\""
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
   ]
 }

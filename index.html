@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <title>Blacktop Basketball Camp - Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Prevent text selection on mobile */
+        body {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Allow text selection in specific areas */
+        .instructions, .footer {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        
+        .instructions {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+            border: 1px solid #e9ecef;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .email-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .email-link:hover {
+            text-decoration: underline;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #3498db;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            border: none;
+            cursor: pointer;
+            min-height: 60px;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .download-btn:hover,
+        .download-btn:active {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .download-btn:focus {
+            outline: 3px solid rgba(52, 152, 219, 0.3);
+            outline-offset: 2px;
+        }
+        
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .download-btn:hover {
+                transform: none;
+                box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            }
+            
+            .download-btn:active {
+                transform: scale(0.98);
+                background-color: #2980b9;
+            }
+        }
+        
+        /* Ensure minimum touch target size */
+        .download-btn {
+            min-height: 44px; /* iOS minimum touch target */
+        }
+        
+        /* Improve email link touch targets */
+        .email-link {
+            padding: 4px 2px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .email-link:hover,
+        .email-link:focus {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .download-icon {
+            font-size: 1.5rem;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            font-size: 0.95rem;
+            color: #6c757d;
+        }
+        
+        /* Large tablets and small desktops */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                margin: 20px;
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 25px;
+            }
+            
+            .instructions {
+                padding: 20px;
+                margin: 25px 0;
+            }
+            
+            .instructions li {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+        }
+        
+        /* Mobile devices */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 25px 20px;
+                margin: 10px;
+                border-radius: 12px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            
+            .instructions {
+                padding: 18px;
+                margin: 20px 0;
+                border-radius: 8px;
+            }
+            
+            .instructions li {
+                font-size: 0.95rem;
+                margin-bottom: 10px;
+            }
+            
+            .download-btn {
+                padding: 18px 25px;
+                font-size: 1.1rem;
+                min-height: 55px;
+                margin: 25px 0;
+            }
+            
+            .footer {
+                font-size: 0.9rem;
+                margin-top: 25px;
+            }
+        }
+        
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px 15px;
+                margin: 5px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+                margin-bottom: 18px;
+            }
+            
+            .instructions {
+                padding: 15px;
+                margin: 18px 0;
+            }
+            
+            .instructions li {
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+            }
+            
+            .download-btn {
+                padding: 16px 20px;
+                font-size: 1rem;
+                min-height: 50px;
+                margin: 20px 0;
+            }
+            
+            .footer {
+                font-size: 0.85rem;
+                margin-top: 20px;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .container {
+                padding: 18px 12px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .download-btn {
+                padding: 14px 18px;
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Landscape orientation on mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                margin-bottom: 15px;
+            }
+            
+            .instructions {
+                margin: 15px 0;
+            }
+            
+            .download-btn {
+                margin: 15px 0;
+            }
+        }
+        
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .download-btn {
+                box-shadow: 0 2px 8px rgba(52, 152, 219, 0.4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏀 Basketball Camp Registration</h1>
+        
+        <div class="instructions">
+            <ol>
+                <li><strong>Download</strong> the registration form below.</li>
+                <li><strong>Fill it out</strong> on your device.</li>
+                <li><strong>Save and email</strong> to: <a href="mailto:robertjanice@bellsouth.net" class="email-link">robertjanice@bellsouth.net</a></li>
+            </ol>
+        </div>
+        
+        <a href="registration.pdf" class="download-btn" download>
+            <span class="download-icon" aria-hidden="true">⬇️</span>
+            <span>Download Registration Form</span>
+        </a>
+        
+        <div class="footer">
+            Having trouble? Email us directly at <a href="mailto:robertjanice@bellsouth.net" class="email-link">robertjanice@bellsouth.net</a>.
+        </div>
+    </div>
+</body>
+</html>

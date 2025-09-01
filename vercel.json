@@ -13,7 +13,10 @@
   "routes": [
     {
       "src": "/registration.pdf",
-      "dest": "/registration.pdf"
+      "dest": "/registration.pdf",
+      "headers": {
+        "Content-Disposition": "attachment; filename=\"registration.pdf\""
+      }
     }
   ]
 }

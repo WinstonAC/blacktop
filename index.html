@@ -75,7 +75,8 @@
       emailBody += `Address: ${data.address || 'Not provided'}\n`;
       emailBody += `City & Zip: ${data.city_zip || 'Not provided'}\n`;
       emailBody += `Cell Number: ${data.cell_number || 'Not provided'}\n`;
-      emailBody += `Alt Phone Number: ${data.alt_phone || 'Not provided'}\n\n`;
+      emailBody += `Alt Phone Number: ${data.alt_phone || 'Not provided'}\n`;
+      emailBody += `Guardian's Email: ${data.guardian_email || 'Not provided'}\n\n`;
       emailBody += `Liability Release: ${data.liability_release ? 'Yes' : 'No'}\n`;
       emailBody += `Photo Permission: ${data.photo_permission ? 'Yes' : 'No'}\n`;
       
@@ -189,6 +190,11 @@
             <div>
               <label style="display:block; margin-bottom:5px; font-weight:bold;">Alt Phone Number:</label>
               <input type="tel" name="alt_phone" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Guardian's Email:</label>
+              <input type="email" name="guardian_email" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
             </div>
           </div>
           

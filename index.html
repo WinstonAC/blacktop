@@ -68,7 +68,8 @@
       emailBody += `Amount Paid: ${data.amount_paid || 'Not provided'}\n`;
       emailBody += `T-Shirt Size: ${data.shirt_size || 'Not provided'}\n\n`;
       emailBody += 'PLAYER INFORMATION:\n';
-      emailBody += `Player's Name: ${data.player_name || 'Not provided'}\n`;
+      emailBody += `Player's First Name: ${data.player_first_name || 'Not provided'}\n`;
+      emailBody += `Player's Last Name: ${data.player_last_name || 'Not provided'}\n`;
       emailBody += `Age: ${data.age || 'Not provided'}\n`;
       emailBody += `Date of Birth: ${data.dob || 'Not provided'}\n`;
       emailBody += `Parent(s) Name: ${data.parent_name || 'Not provided'}\n`;
@@ -78,11 +79,17 @@
       emailBody += `Alt Phone Number: ${data.alt_phone || 'Not provided'}\n`;
       emailBody += `Guardian's Email: ${data.guardian_email || 'Not provided'}\n\n`;
       emailBody += `Liability Release: ${data.liability_release ? 'Yes' : 'No'}\n`;
-      emailBody += `Photo Permission: ${data.photo_permission ? 'Yes' : 'No'}\n`;
+      emailBody += `Photo Permission: ${data.photo_permission ? 'Yes' : 'No'}\n\n`;
+      emailBody += 'SIGNATURE:\n';
+      emailBody += `Parent/Guardian Name: ${data.guardian_signature_name || 'Not provided'}\n`;
+      emailBody += `Date: ${data.signature_date || 'Not provided'}\n`;
       
       // Create mailto link
       const subject = 'Blacktop Basketball Camp Registration';
       const mailtoLink = `mailto:robertjanice@bellsouth.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Show confirmation message
+      alert('✅ Registration form prepared!\n\nYour email app should open with the registration details filled in.\n\nIf your email app doesn\'t open automatically, please copy the information and email it to: robertjanice@bellsouth.net');
       
       // Open email client
       window.location.href = mailtoLink;
@@ -153,8 +160,13 @@
           <h4 style="margin:25px 0 15px 0; color:#2c3e50;">Player Information</h4>
           <div style="display:grid; gap:15px; margin-bottom:25px;">
             <div>
-              <label style="display:block; margin-bottom:5px; font-weight:bold;">Player's Name:</label>
-              <input type="text" name="player_name" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Player's First Name:</label>
+              <input type="text" name="player_first_name" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Player's Last Name:</label>
+              <input type="text" name="player_last_name" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
             </div>
             
             <div>
@@ -210,6 +222,19 @@
               <input type="checkbox" name="photo_permission" style="margin-top:3px;">
               <span style="font-size:14px; line-height:1.4;">Permission to Use Photograph: I grant permission for my child's photo to be used in camp promotional materials.</span>
             </label>
+          </div>
+          
+          <div style="margin:25px 0; padding:20px; border:2px solid #ddd; border-radius:8px; background:#f8f9fa;">
+            <h4 style="margin-bottom:15px; color:#2c3e50;">Parent/Guardian Signature</h4>
+            <div style="margin-bottom:15px;">
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Parent/Guardian Name (Print):</label>
+              <input type="text" name="guardian_signature_name" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            <div style="margin-bottom:15px;">
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Date:</label>
+              <input type="date" name="signature_date" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            <p style="font-size:14px; color:#666; margin:0;">By submitting this form, I acknowledge that I have read and agree to the terms above.</p>
           </div>
           
           <div style="text-align:center; margin-top:30px;">

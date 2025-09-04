@@ -88,11 +88,13 @@
       const subject = 'Blacktop Basketball Camp Registration';
       const mailtoLink = `mailto:robertjanice@bellsouth.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
       
-      // Show confirmation message
-      alert('✅ Registration form prepared!\n\nYour email app should open with the registration details filled in.\n\nIf your email app doesn\'t open automatically, please copy the information and email it to: robertjanice@bellsouth.net');
+      // Try to open email client
+      const emailOpened = window.open(mailtoLink, '_self');
       
-      // Open email client
-      window.location.href = mailtoLink;
+      // Show confirmation message
+      setTimeout(() => {
+        alert('✅ Registration form prepared!\n\nYour email app should have opened with the registration details filled in.\n\nIf your email app didn\'t open, please:\n1. Copy the information below\n2. Email it to: robertjanice@bellsouth.net\n\n' + emailBody);
+      }, 1000);
     });
     
     // Handle PDF download

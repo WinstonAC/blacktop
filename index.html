@@ -52,40 +52,42 @@
     }
   </style>
   <script>
-    // Detect mobile devices
-    function isMobile() {
-      return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    }
-    
-    function loadPDFViewer() {
-      const iframe = document.getElementById('pdf-iframe');
-      const loadingMessage = document.getElementById('loading-message');
-      const mobileLink = document.getElementById('mobile-pdf-link');
+    // Handle form submission
+    document.getElementById('registration-form').addEventListener('submit', function(e) {
+      e.preventDefault();
       
-      if (isMobile()) {
-        // On mobile, show the direct link instead of iframe
-        iframe.style.display = 'none';
-        mobileLink.style.display = 'block';
-        loadingMessage.style.display = 'none';
-      } else {
-        // On desktop, use iframe
-        iframe.src = '/blacktop-camp-registration-2023.pdf#toolbar=1&navpanes=0&statusbar=0&view=FitH&zoom=100';
-        
-        // Hide loading message when iframe loads
-        iframe.addEventListener('load', function() {
-          loadingMessage.style.display = 'none';
-        });
-        
-        // Show error message if PDF fails to load
-        iframe.addEventListener('error', function() {
-          loadingMessage.innerHTML = 'Unable to load PDF. Please use the download button above.';
-          loadingMessage.style.color = '#e74c3c';
-        });
-      }
-    }
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      
+      // Create email body
+      let emailBody = 'BLACKTOP BASKETBALL CAMP REGISTRATION\n\n';
+      emailBody += `Paid Date: ${data.paid_date || 'Not provided'}\n`;
+      emailBody += `Amount Paid: ${data.amount_paid || 'Not provided'}\n`;
+      emailBody += `T-Shirt Size: ${data.shirt_size || 'Not provided'}\n\n`;
+      emailBody += 'PLAYER INFORMATION:\n';
+      emailBody += `Player's Name: ${data.player_name || 'Not provided'}\n`;
+      emailBody += `Age: ${data.age || 'Not provided'}\n`;
+      emailBody += `Date of Birth: ${data.dob || 'Not provided'}\n`;
+      emailBody += `Parent(s) Name: ${data.parent_name || 'Not provided'}\n`;
+      emailBody += `Address: ${data.address || 'Not provided'}\n`;
+      emailBody += `City & Zip: ${data.city_zip || 'Not provided'}\n`;
+      emailBody += `Cell Number: ${data.cell_number || 'Not provided'}\n`;
+      emailBody += `Alt Phone Number: ${data.alt_phone || 'Not provided'}\n\n`;
+      emailBody += `Liability Release: ${data.liability_release ? 'Yes' : 'No'}\n`;
+      emailBody += `Photo Permission: ${data.photo_permission ? 'Yes' : 'No'}\n`;
+      
+      // Create mailto link
+      const subject = 'Blacktop Basketball Camp Registration';
+      const mailtoLink = `mailto:robertjanice@bellsouth.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+    });
     
-    // Load PDF when page loads
-    window.addEventListener('load', loadPDFViewer);
+    // Handle PDF download
+    function downloadForm() {
+      window.open('/blacktop-camp-registration-2023.pdf', '_blank');
+    }
   </script>
 </head>
 <body>
@@ -114,39 +116,108 @@
         <strong>Fill it out right here!</strong> The form below works on all devices - phones, tablets, and computers.
       </div>
 
-      <div class="pdf-container" aria-label="Embedded registration form">
-        <!-- Mobile-friendly PDF link -->
-        <div id="mobile-pdf-link" style="display:none; text-align:center; padding:20px; background:#f8f9fa; border-radius:10px; margin-bottom:20px;">
-          <h3>📱 Fill Out Form on Your Phone</h3>
-          <p style="margin:15px 0;">Tap the button below to open the form in your browser's PDF viewer where you can fill it out directly:</p>
-          <a href="/blacktop-camp-registration-2023.pdf" target="_blank" class="download-btn" style="display:inline-block; margin:10px 0;">
-            <span class="download-icon">📝</span>
-            Open Form to Fill Out
-          </a>
-          <p style="margin-top:15px; font-size:0.9rem; color:#666;">After filling out, use your browser's share button to email the completed form.</p>
-        </div>
-        
-        <!-- Desktop PDF Viewer -->
-        <iframe
-          id="pdf-iframe"
-          class="pdf-iframe"
-          title="Registration Form"
-          allow="fullscreen; clipboard-read; clipboard-write"
-          type="application/pdf">
-          <p>Your browser doesn't support inline PDFs. <a href="/blacktop-camp-registration-2023.pdf">Download the registration form</a> instead.</p>
-        </iframe>
-        
-        <!-- Loading message -->
-        <div id="loading-message" style="text-align:center; padding:20px; color:#666;">
-          Loading registration form...
-        </div>
+      <div class="pdf-container" aria-label="Registration form">
+        <!-- HTML Form (works on all devices) -->
+        <form id="registration-form" style="background:#fff; padding:30px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,.05);">
+          <h3 style="text-align:center; margin-bottom:25px; color:#2c3e50;">BLACKTOP BASKETBALL CAMP REGISTRATION FORM</h3>
+          
+          <div style="display:grid; gap:20px; margin-bottom:25px;">
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Paid Date:</label>
+              <input type="date" name="paid_date" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Amount Paid:</label>
+              <input type="text" name="amount_paid" placeholder="$" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">T-Shirt Size:</label>
+              <select name="shirt_size" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+                <option value="">Select Size</option>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+              </select>
+            </div>
+          </div>
+          
+          <h4 style="margin:25px 0 15px 0; color:#2c3e50;">Player Information</h4>
+          <div style="display:grid; gap:15px; margin-bottom:25px;">
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Player's Name:</label>
+              <input type="text" name="player_name" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Age:</label>
+              <input type="number" name="age" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Date of Birth:</label>
+              <input type="date" name="dob" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Parent(s) Name:</label>
+              <input type="text" name="parent_name" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Address:</label>
+              <input type="text" name="address" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">City & Zip:</label>
+              <input type="text" name="city_zip" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Cell Number:</label>
+              <input type="tel" name="cell_number" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+            
+            <div>
+              <label style="display:block; margin-bottom:5px; font-weight:bold;">Alt Phone Number:</label>
+              <input type="tel" name="alt_phone" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:16px;">
+            </div>
+          </div>
+          
+          <div style="margin:25px 0;">
+            <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+              <input type="checkbox" name="liability_release" style="margin-top:3px;">
+              <span style="font-size:14px; line-height:1.4;">I acknowledge and fully understand that each participant will be engaging in activities that may involve risk or serious injury, including permanent disability and death, and severe social and economic losses which might result not only from their own actions, inactions or negligence, but the actions, inactions or negligence of others, the rules of play, or the condition of the premises or of any equipment used.</span>
+            </label>
+          </div>
+          
+          <div style="margin:25px 0;">
+            <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+              <input type="checkbox" name="photo_permission" style="margin-top:3px;">
+              <span style="font-size:14px; line-height:1.4;">Permission to Use Photograph: I grant permission for my child's photo to be used in camp promotional materials.</span>
+            </label>
+          </div>
+          
+          <div style="text-align:center; margin-top:30px;">
+            <button type="submit" style="background:#3498db; color:#fff; padding:15px 30px; border:none; border-radius:8px; font-size:16px; font-weight:bold; cursor:pointer; margin-right:15px;">
+              📧 Email Registration
+            </button>
+            <button type="button" onclick="downloadForm()" style="background:#27ae60; color:#fff; padding:15px 30px; border:none; border-radius:8px; font-size:16px; font-weight:bold; cursor:pointer;">
+              💾 Download PDF
+            </button>
+          </div>
+        </form>
       </div>
     </main>
 
     <div class="footer">
-      <strong>Instructions:</strong> Fill out the form above, then use the "Download" button in the PDF toolbar to save your completed form.<br/>
-      Email your completed form to: <a class="email-link" href="mailto:robertjanice@bellsouth.net">robertjanice@bellsouth.net</a><br/>
-      Questions? Email us at the same address.
+      <strong>Instructions:</strong> Fill out the form above, then click "Email Registration" to send it directly, or "Download PDF" to get a PDF version.<br/>
+      Questions? Email us at: <a class="email-link" href="mailto:robertjanice@bellsouth.net">robertjanice@bellsouth.net</a>
     </div>
   </div>
 </body>

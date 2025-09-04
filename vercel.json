@@ -1,12 +1,15 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "framework": null,
-  "public": true,
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/$1"
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }

@@ -1,16 +1,5 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "framework": null,
-  "headers": [
-    {
-      "source": "/registration.pdf",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
-    }
-  ]
+  "framework": null
 }

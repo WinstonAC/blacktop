@@ -93,6 +93,9 @@
     
     // Show email modal with copy functionality
     function showEmailModal(emailBody) {
+      console.log('showEmailModal called with:', emailBody); // Debug
+      alert('About to show modal!'); // Debug
+      
       // Create modal overlay
       const modal = document.createElement('div');
       modal.style.cssText = `

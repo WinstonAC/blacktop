@@ -1,92 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fall Blacktop Camp Registration</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{
-      font-family:Arial, Helvetica, sans-serif;
-      background:#f8f9fa; color:#2c3e50; line-height:1.6;
-      min-height:100vh; padding:20px;
-    }
-    .container{
-      max-width:800px; margin:0 auto; background:#fff; border-radius:15px;
-      padding:40px; box-shadow:0 10px 30px rgba(0,0,0,.1); border:1px solid #e9ecef;
-    }
-    h1{font-size:2.2rem; margin-bottom:30px; text-align:center}
-    .instructions{
-      background:#f8f9fa; border-radius:10px; padding:25px; margin:30px 0; border:1px solid #e9ecef;
-    }
-    .instructions ol{padding-left:20px}
-    .instructions li{margin-bottom:15px; font-size:1.1rem}
-    .email-link{color:#3498db; text-decoration:none; font-weight:700}
-    .email-link:hover{text-decoration:underline}
-    .download-btn{
-      display:inline-flex; align-items:center; gap:10px; background:#3498db; color:#fff;
-      padding:20px 40px; font-size:1.2rem; font-weight:700; text-decoration:none; border-radius:10px;
-      transition:all .2s ease; margin:30px 0; box-shadow:0 5px 15px rgba(52,152,219,.3);
-      width:100%; justify-content:center;
-    }
-    .download-btn:hover{background:#2980b9; transform:translateY(-1px)}
-    .divider{ text-align:center; margin:12px 0 18px; color:#6c757d; font-size:.95rem; font-style:italic}
-    .pdf-container{ margin:16px 0 30px; border:1px solid #e9ecef; border-radius:10px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.05)}
-    .pdf-iframe{ width:100%; height:80vh; border:0; display:block }
-    .footer{ margin-top:20px; padding-top:20px; border-top:1px solid #e9ecef; font-size:.95rem; color:#6c757d; text-align:center}
-    .download-icon{font-size:1.4rem}
-    @media (max-width:600px){
-      .container{padding:25px}
-      h1{font-size:1.8rem}
-      .download-btn{padding:16px 24px; font-size:1.05rem}
-      .pdf-iframe{height:70vh}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fall Blacktop Camp Registration</title>
 </head>
 <body>
-  <div class="container">
     <h1>🏀 Fall Blacktop Camp Registration</h1>
-
-    <main role="main" aria-labelledby="title">
-      <div class="instructions" aria-label="Instructions">
-        <ol>
-          <li><strong>Download</strong> the registration form below.</li>
-          <li><strong>Fill it out</strong> on your device <em>or in the viewer on this page</em>.</li>
-          <li><strong>Save and email</strong> to:
-            <a class="email-link" href="mailto:robertjanice@bellsouth.net">robertjanice@bellsouth.net</a>
-          </li>
-        </ol>
-      </div>
-
-      <!-- Primary, foolproof path -->
-      <a class="download-btn" href="/registration.pdf" download aria-label="Download the registration form">
-        <span class="download-icon">⬇️</span>
-        Download &amp; Fill the Registration Form
-      </a>
-
-      <!-- Secondary inline option -->
-      <div class="divider">
-        Or fill it right here. When finished, tap the viewer's <strong>Download</strong> icon to save your answers before emailing.
-      </div>
-
-      <div class="pdf-container" aria-label="Embedded registration form">
-        <!-- Native browser PDF viewer with form fields. -->
-        <iframe
-          class="pdf-iframe"
-          title="Registration Form"
-          src="/registration.pdf#toolbar=1&navpanes=0&statusbar=0"
-          allow="fullscreen; clipboard-read; clipboard-write">
-          <p>Your browser doesn't support inline PDFs. <a href="/registration.pdf">Download the registration form</a> instead.</p>
-        </iframe>
-      </div>
-    </main>
-
-    <div class="footer">
-      Tip for iPhone/iPad: after filling, use <strong>Download</strong> in the viewer.
-      If needed, use <em>Print → Save as PDF</em> before emailing.<br/>
-      Having trouble? Email us at
-      <a class="email-link" href="mailto:robertjanice@bellsouth.net">robertjanice@bellsouth.net</a>.
-    </div>
-  </div>
+    <p>This is a test to see if the site loads.</p>
+    <a href="/registration.pdf" download>Download Registration Form</a>
 </body>
 </html>

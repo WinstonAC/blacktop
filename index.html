@@ -52,29 +52,31 @@
     }
   </style>
   <script>
-    // Simple device detection and fallback logic
-    function isMobile() {
-      return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    // Try multiple PDF viewing methods for maximum compatibility
+    function loadPDFViewer() {
+      const pdfUrl = 'https://blacktop-three.vercel.app/blacktop-camp-registration-2023.pdf';
+      const googleViewerUrl = `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
+      
+      const iframe = document.getElementById('pdf-iframe');
+      const loadingMessage = document.getElementById('loading-message');
+      
+      // Try Google Docs Viewer first (better mobile support)
+      iframe.src = googleViewerUrl;
+      
+      // Hide loading message when iframe loads
+      iframe.addEventListener('load', function() {
+        loadingMessage.style.display = 'none';
+      });
+      
+      // Fallback to direct PDF if Google viewer fails
+      iframe.addEventListener('error', function() {
+        console.log('Google viewer failed, trying direct PDF');
+        iframe.src = '/blacktop-camp-registration-2023.pdf#toolbar=1&navpanes=0&statusbar=0&view=FitH';
+      });
     }
     
-    function showMobileInstructions() {
-      document.querySelector('.pdf-viewer-container').style.display = 'none';
-      document.querySelector('.mobile-instructions').style.display = 'block';
-    }
-    
-    function showDesktopViewer() {
-      document.querySelector('.pdf-viewer-container').style.display = 'block';
-      document.querySelector('.mobile-instructions').style.display = 'none';
-    }
-    
-    // Initialize on page load
-    window.addEventListener('load', function() {
-      if (isMobile()) {
-        showMobileInstructions();
-      } else {
-        showDesktopViewer();
-      }
-    });
+    // Load PDF when page loads
+    window.addEventListener('load', loadPDFViewer);
   </script>
 </head>
 <body>
@@ -100,47 +102,29 @@
 
       <!-- Secondary inline option -->
       <div class="divider">
-        <strong>💻 On a computer?</strong> Fill it out right here in the viewer below.<br/>
-        <strong>📱 On a phone?</strong> Use the download button above for the best experience.
+        <strong>Fill it out right here!</strong> The form below works on all devices - phones, tablets, and computers.
       </div>
 
       <div class="pdf-container" aria-label="Embedded registration form">
-        <!-- Desktop PDF Viewer (iframe) -->
-        <div class="pdf-viewer-container">
-          <iframe
-            class="pdf-iframe"
-            title="Registration Form"
-            src="/blacktop-camp-registration-2023.pdf#toolbar=1&navpanes=0&statusbar=0&view=FitH"
-            allow="fullscreen; clipboard-read; clipboard-write"
-            type="application/pdf">
-            <p>Your browser doesn't support inline PDFs. <a href="/blacktop-camp-registration-2023.pdf">Download the registration form</a> instead.</p>
-          </iframe>
-        </div>
+        <!-- Universal PDF Viewer -->
+        <iframe
+          id="pdf-iframe"
+          class="pdf-iframe"
+          title="Registration Form"
+          allow="fullscreen; clipboard-read; clipboard-write"
+          type="application/pdf">
+          <p>Your browser doesn't support inline PDFs. <a href="/blacktop-camp-registration-2023.pdf">Download the registration form</a> instead.</p>
+        </iframe>
         
-        <!-- Mobile Instructions -->
-        <div class="mobile-instructions" style="display:none; text-align:center; padding:40px; background:#f8f9fa; border-radius:10px;">
-          <h3>📱 Mobile Instructions</h3>
-          <p style="margin:20px 0; font-size:1.1rem;">To fill out the registration form on your phone:</p>
-          <ol style="text-align:left; max-width:400px; margin:0 auto; font-size:1.1rem;">
-            <li style="margin-bottom:15px;">Tap the <strong>blue download button</strong> above</li>
-            <li style="margin-bottom:15px;">Open the PDF in your <strong>Files app</strong> or <strong>Adobe Reader</strong></li>
-            <li style="margin-bottom:15px;">Fill out all the form fields</li>
-            <li style="margin-bottom:15px;">Save the completed form</li>
-            <li style="margin-bottom:15px;">Email it to <strong>robertjanice@bellsouth.net</strong></li>
-          </ol>
-          <div style="margin-top:30px;">
-            <a href="/blacktop-camp-registration-2023.pdf" class="download-btn" style="display:inline-block; margin:10px 0;">
-              <span class="download-icon">⬇️</span>
-              Download Registration Form
-            </a>
-          </div>
+        <!-- Loading message -->
+        <div id="loading-message" style="text-align:center; padding:20px; color:#666;">
+          Loading registration form...
         </div>
       </div>
     </main>
 
     <div class="footer">
-      <strong>💻 Computer users:</strong> Fill out the form above, then use the "Download" button in the PDF toolbar to save your completed form.<br/>
-      <strong>📱 Phone users:</strong> Download the form above, fill it out in your PDF app, then email it.<br/>
+      <strong>Instructions:</strong> Fill out the form above, then use the "Download" button in the PDF toolbar to save your completed form.<br/>
       Email your completed form to: <a class="email-link" href="mailto:robertjanice@bellsouth.net">robertjanice@bellsouth.net</a><br/>
       Questions? Email us at the same address.
     </div>

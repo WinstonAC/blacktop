@@ -59,6 +59,9 @@
     document.getElementById('registration-form').addEventListener('submit', function(e) {
       e.preventDefault();
       
+      console.log('Form submitted!'); // Debug
+      alert('Form submitted!'); // Debug
+      
       const formData = new FormData(this);
       const data = Object.fromEntries(formData);
       

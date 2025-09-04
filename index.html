@@ -85,8 +85,8 @@
       emailBody += `Parent/Guardian Name: ${data.guardian_signature_name || 'Not provided'}\n`;
       emailBody += `Date: ${data.signature_date || 'Not provided'}\n`;
       
-      // Show the form data in a modal that users can copy
-      showEmailModal(emailBody);
+      // Simple test - just show the email body in an alert first
+      alert('Form data:\n\n' + emailBody);
     });
     
     // Show email modal with copy functionality

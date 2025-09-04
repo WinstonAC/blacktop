@@ -84,18 +84,89 @@
       emailBody += `Parent/Guardian Name: ${data.guardian_signature_name || 'Not provided'}\n`;
       emailBody += `Date: ${data.signature_date || 'Not provided'}\n`;
       
-      // Create mailto link
-      const subject = 'Blacktop Basketball Camp Registration';
-      const mailtoLink = `mailto:robertjanice@bellsouth.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-      
-      // Try to open email client
-      const emailOpened = window.open(mailtoLink, '_self');
-      
-      // Show confirmation message
-      setTimeout(() => {
-        alert('✅ Registration form prepared!\n\nYour email app should have opened with the registration details filled in.\n\nIf your email app didn\'t open, please:\n1. Copy the information below\n2. Email it to: robertjanice@bellsouth.net\n\n' + emailBody);
-      }, 1000);
+      // Show the form data in a modal that users can copy
+      showEmailModal(emailBody);
     });
+    
+    // Show email modal with copy functionality
+    function showEmailModal(emailBody) {
+      // Create modal overlay
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+      `;
+      
+      // Create modal content
+      const modalContent = document.createElement('div');
+      modalContent.style.cssText = `
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 500px;
+        width: 100%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      `;
+      
+      modalContent.innerHTML = `
+        <h3 style="margin: 0 0 20px 0; color: #2c3e50; text-align: center;">📧 Email Your Registration</h3>
+        <p style="margin: 0 0 15px 0; color: #666; text-align: center;">Copy the text below and email it to:</p>
+        <p style="margin: 0 0 20px 0; text-align: center;">
+          <a href="mailto:robertjanice@bellsouth.net" style="color: #3498db; font-weight: bold; text-decoration: none;">robertjanice@bellsouth.net</a>
+        </p>
+        <textarea readonly style="width: 100%; height: 300px; padding: 15px; border: 2px solid #ddd; border-radius: 8px; font-family: monospace; font-size: 14px; resize: vertical; box-sizing: border-box;">${emailBody}</textarea>
+        <div style="margin: 20px 0; text-align: center;">
+          <button onclick="copyToClipboard()" style="background: #3498db; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-right: 10px;">📋 Copy All Text</button>
+          <button onclick="closeModal()" style="background: #95a5a6; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer;">Close</button>
+        </div>
+        <p style="margin: 15px 0 0 0; color: #666; font-size: 14px; text-align: center;">After copying, open your email app and paste the text into a new email.</p>
+      `;
+      
+      modal.appendChild(modalContent);
+      document.body.appendChild(modal);
+      
+      // Add global functions
+      window.copyToClipboard = function() {
+        const textarea = modalContent.querySelector('textarea');
+        textarea.select();
+        textarea.setSelectionRange(0, 99999); // For mobile devices
+        
+        try {
+          document.execCommand('copy');
+          alert('✅ Text copied to clipboard!\n\nNow open your email app and paste it into a new email to: robertjanice@bellsouth.net');
+        } catch (err) {
+          // Fallback for mobile
+          navigator.clipboard.writeText(textarea.value).then(() => {
+            alert('✅ Text copied to clipboard!\n\nNow open your email app and paste it into a new email to: robertjanice@bellsouth.net');
+          }).catch(() => {
+            alert('Please manually select and copy the text above.');
+          });
+        }
+      };
+      
+      window.closeModal = function() {
+        document.body.removeChild(modal);
+      };
+      
+      // Close modal when clicking outside
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    }
     
     // Handle PDF download
     function downloadForm() {

@@ -85,9 +85,45 @@
       emailBody += `Parent/Guardian Name: ${data.guardian_signature_name || 'Not provided'}\n`;
       emailBody += `Date: ${data.signature_date || 'Not provided'}\n`;
       
-      // Show the form data in an alert that users can copy
-      alert('📧 EMAIL YOUR REGISTRATION\n\nCopy the text below and email it to: robertjanice@bellsouth.net\n\n' + emailBody);
+      // Try to copy to clipboard first, then show instructions
+      copyToClipboardAndShowInstructions(emailBody);
     });
+    
+    // Modern clipboard copy with fallback
+    async function copyToClipboardAndShowInstructions(emailBody) {
+      const fullText = `Subject: Blacktop Basketball Camp Registration\n\nTo: robertjanice@bellsouth.net\n\n${emailBody}`;
+      
+      try {
+        // Try modern clipboard API first
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(fullText);
+          alert('✅ Registration copied to clipboard!\n\nNow open your email app and paste it into a new email.\n\nRecipient: robertjanice@bellsouth.net');
+        } else {
+          // Fallback for older browsers
+          const textArea = document.createElement('textarea');
+          textArea.value = fullText;
+          textArea.style.position = 'fixed';
+          textArea.style.left = '-999999px';
+          textArea.style.top = '-999999px';
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          
+          try {
+            document.execCommand('copy');
+            alert('✅ Registration copied to clipboard!\n\nNow open your email app and paste it into a new email.\n\nRecipient: robertjanice@bellsouth.net');
+          } catch (err) {
+            // Final fallback - show the text
+            alert('📧 EMAIL YOUR REGISTRATION\n\nCopy the text below and email it to: robertjanice@bellsouth.net\n\n' + fullText);
+          }
+          
+          document.body.removeChild(textArea);
+        }
+      } catch (err) {
+        // If clipboard fails, show the text
+        alert('📧 EMAIL YOUR REGISTRATION\n\nCopy the text below and email it to: robertjanice@bellsouth.net\n\n' + fullText);
+      }
+    }
     
     // Show email modal with copy functionality
     function showEmailModal(emailBody) {

@@ -52,27 +52,36 @@
     }
   </style>
   <script>
-    // Try multiple PDF viewing methods for maximum compatibility
+    // Detect mobile devices
+    function isMobile() {
+      return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    }
+    
     function loadPDFViewer() {
-      const pdfUrl = 'https://blacktop-three.vercel.app/blacktop-camp-registration-2023.pdf';
-      const googleViewerUrl = `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
-      
       const iframe = document.getElementById('pdf-iframe');
       const loadingMessage = document.getElementById('loading-message');
+      const mobileLink = document.getElementById('mobile-pdf-link');
       
-      // Try Google Docs Viewer first (better mobile support)
-      iframe.src = googleViewerUrl;
-      
-      // Hide loading message when iframe loads
-      iframe.addEventListener('load', function() {
+      if (isMobile()) {
+        // On mobile, show the direct link instead of iframe
+        iframe.style.display = 'none';
+        mobileLink.style.display = 'block';
         loadingMessage.style.display = 'none';
-      });
-      
-      // Fallback to direct PDF if Google viewer fails
-      iframe.addEventListener('error', function() {
-        console.log('Google viewer failed, trying direct PDF');
-        iframe.src = '/blacktop-camp-registration-2023.pdf#toolbar=1&navpanes=0&statusbar=0&view=FitH';
-      });
+      } else {
+        // On desktop, use iframe
+        iframe.src = '/blacktop-camp-registration-2023.pdf#toolbar=1&navpanes=0&statusbar=0&view=FitH&zoom=100';
+        
+        // Hide loading message when iframe loads
+        iframe.addEventListener('load', function() {
+          loadingMessage.style.display = 'none';
+        });
+        
+        // Show error message if PDF fails to load
+        iframe.addEventListener('error', function() {
+          loadingMessage.innerHTML = 'Unable to load PDF. Please use the download button above.';
+          loadingMessage.style.color = '#e74c3c';
+        });
+      }
     }
     
     // Load PDF when page loads
@@ -106,7 +115,18 @@
       </div>
 
       <div class="pdf-container" aria-label="Embedded registration form">
-        <!-- Universal PDF Viewer -->
+        <!-- Mobile-friendly PDF link -->
+        <div id="mobile-pdf-link" style="display:none; text-align:center; padding:20px; background:#f8f9fa; border-radius:10px; margin-bottom:20px;">
+          <h3>📱 Fill Out Form on Your Phone</h3>
+          <p style="margin:15px 0;">Tap the button below to open the form in your browser's PDF viewer where you can fill it out directly:</p>
+          <a href="/blacktop-camp-registration-2023.pdf" target="_blank" class="download-btn" style="display:inline-block; margin:10px 0;">
+            <span class="download-icon">📝</span>
+            Open Form to Fill Out
+          </a>
+          <p style="margin-top:15px; font-size:0.9rem; color:#666;">After filling out, use your browser's share button to email the completed form.</p>
+        </div>
+        
+        <!-- Desktop PDF Viewer -->
         <iframe
           id="pdf-iframe"
           class="pdf-iframe"

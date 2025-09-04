@@ -1,0 +1,11 @@
+{
+  "name": "blacktop-registration",
+  "version": "1.0.0",
+  "description": "Fall Blacktop Camp Registration Form",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'"
+  },
+  "keywords": ["registration", "camp", "static"],
+  "author": "WinstonAC",
+  "license": "MIT"
+}

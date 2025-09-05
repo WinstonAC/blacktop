@@ -110,10 +110,15 @@
           textArea.select();
           
           try {
-            document.execCommand('copy');
-            alert('✅ Registration copied to clipboard!\n\nNow open your email app and paste it into a new email.\n\nRecipient: robertjanice@bellsouth.net');
+            const copySuccessful = document.execCommand('copy');
+            if (copySuccessful) {
+              alert('✅ Registration copied to clipboard!\n\nNow open your email app and paste it into a new email.\n\nRecipient: robertjanice@bellsouth.net');
+            } else {
+              // Final fallback - show the text
+              alert('📧 EMAIL YOUR REGISTRATION\n\nCopy the text below and email it to: robertjanice@bellsouth.net\n\n' + fullText);
+            }
           } catch (err) {
-            // Final fallback - show the text
+            // If an error occurs, show the text
             alert('📧 EMAIL YOUR REGISTRATION\n\nCopy the text below and email it to: robertjanice@bellsouth.net\n\n' + fullText);
           }
           

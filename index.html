@@ -85,77 +85,41 @@
       emailBody += `Parent/Guardian Name: ${data.guardian_signature_name || 'Not provided'}\n`;
       emailBody += `Date: ${data.signature_date || 'Not provided'}\n`;
       
-      // Try to copy to clipboard first, then show instructions
-      copyToClipboardAndShowInstructions(emailBody);
+      // Show modal with email text for manual copy
+      showEmailModal(emailBody);
     });
-    
-    // Modern clipboard copy with fallback
-    async function copyToClipboardAndShowInstructions(emailBody) {
-      const fullText = `Subject: Blacktop Basketball Camp Registration\n\nTo: robertjanice@bellsouth.net\n\n${emailBody}`;
-      
-      try {
-        // Try modern clipboard API first
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(fullText);
-          alert('✅ Registration copied to clipboard!\n\nNow open your email app and paste it into a new email.\n\nRecipient: robertjanice@bellsouth.net');
-        } else {
-          // Fallback for older browsers
-          const textArea = document.createElement('textarea');
-          textArea.value = fullText;
-          textArea.style.position = 'fixed';
-          textArea.style.left = '-999999px';
-          textArea.style.top = '-999999px';
-          document.body.appendChild(textArea);
-          textArea.focus();
-          textArea.select();
-          
-          try {
-            const copySuccessful = document.execCommand('copy');
-            if (copySuccessful) {
-              alert('✅ Registration copied to clipboard!\n\nNow open your email app and paste it into a new email.\n\nRecipient: robertjanice@bellsouth.net');
-            } else {
-              // Final fallback - show the text
-              alert('📧 EMAIL YOUR REGISTRATION\n\nCopy the text below and email it to: robertjanice@bellsouth.net\n\n' + fullText);
-            }
-          } catch (err) {
-            // If an error occurs, show the text
-            alert('📧 EMAIL YOUR REGISTRATION\n\nCopy the text below and email it to: robertjanice@bellsouth.net\n\n' + fullText);
-          }
-          
-          document.body.removeChild(textArea);
-        }
-      } catch (err) {
-        // If clipboard fails, show the text
-        alert('📧 EMAIL YOUR REGISTRATION\n\nCopy the text below and email it to: robertjanice@bellsouth.net\n\n' + fullText);
-      }
-    }
     
     // Show email modal with copy functionality
     function showEmailModal(emailBody) {
+      // Build full text including subject and recipient
+      const fullText = `Subject: Blacktop Basketball Camp Registration\n\nTo: robertjanice@bellsouth.net\n\n${emailBody}`;
+
       // Create a simple modal
       const modal = document.createElement('div');
       modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
-      
+
       const content = document.createElement('div');
       content.style.cssText = 'background:white;border-radius:10px;padding:30px;max-width:500px;width:100%;max-height:80vh;overflow:auto;';
-      
+
       content.innerHTML = `
         <h3 style="text-align:center;margin-bottom:20px;">📧 Email Your Registration</h3>
         <p style="text-align:center;margin-bottom:20px;">Copy the text below and email it to: <strong>robertjanice@bellsouth.net</strong></p>
-        <textarea readonly style="width:100%;height:300px;padding:15px;border:2px solid #ddd;border-radius:5px;font-family:monospace;font-size:14px;box-sizing:border-box;">${emailBody}</textarea>
+        <textarea readonly style="width:100%;height:300px;padding:15px;border:2px solid #ddd;border-radius:5px;font-family:monospace;font-size:14px;box-sizing:border-box;">${fullText}</textarea>
         <div style="text-align:center;margin:20px 0;">
-          <button onclick="copyText()" style="background:#3498db;color:white;border:none;padding:12px 24px;border-radius:5px;font-size:16px;cursor:pointer;margin-right:10px;">📋 Copy All Text</button>
+          <button onclick="copyText()" style="background:#3498db;color:white;border:none;padding:12px 24px;border-radius:5px;font-size:16px;cursor:pointer;margin-right:10px;">📋 Copy</button>
           <button onclick="closeModal()" style="background:#95a5a6;color:white;border:none;padding:12px 24px;border-radius:5px;font-size:16px;cursor:pointer;">Close</button>
         </div>
         <p style="text-align:center;font-size:14px;color:#666;">After copying, open your email app and paste the text.</p>
       `;
-      
+
       modal.appendChild(content);
       document.body.appendChild(modal);
-      
+
+      const textarea = content.querySelector('textarea');
+      textarea.addEventListener('click', () => textarea.select());
+
       // Global functions
       window.copyText = function() {
-        const textarea = content.querySelector('textarea');
         textarea.select();
         try {
           document.execCommand('copy');
@@ -164,7 +128,7 @@
           alert('Please manually select and copy the text above.');
         }
       };
-      
+
       window.closeModal = function() {
         document.body.removeChild(modal);
       };

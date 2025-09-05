@@ -55,26 +55,44 @@
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
 
-        let emailBody = 'BLACKTOP BASKETBALL CAMP REGISTRATION\n\n';
+        let emailBody = '🏀 BLACKTOP BASKETBALL CAMP REGISTRATION 🏀\n\n';
+        emailBody += '═══════════════════════════════════════════════════════════\n\n';
+        
+        emailBody += '📋 PAYMENT INFORMATION\n';
+        emailBody += '───────────────────────────────────────────────────────────\n';
         emailBody += `Paid Date: ${data.paid_date || 'Not provided'}\n`;
         emailBody += `Amount Paid: ${data.amount_paid || 'Not provided'}\n`;
         emailBody += `T-Shirt Size: ${data.shirt_size || 'Not provided'}\n\n`;
-        emailBody += 'PLAYER INFORMATION:\n';
+        
+        emailBody += '👤 PLAYER INFORMATION\n';
+        emailBody += '───────────────────────────────────────────────────────────\n';
         emailBody += `Player's First Name: ${data.player_first_name || 'Not provided'}\n`;
         emailBody += `Player's Last Name: ${data.player_last_name || 'Not provided'}\n`;
         emailBody += `Age: ${data.age || 'Not provided'}\n`;
-        emailBody += `Date of Birth: ${data.dob || 'Not provided'}\n`;
+        emailBody += `Date of Birth: ${data.dob || 'Not provided'}\n\n`;
+        
+        emailBody += '👨‍👩‍👧‍👦 PARENT/GUARDIAN INFORMATION\n';
+        emailBody += '───────────────────────────────────────────────────────────\n';
         emailBody += `Parent(s) Name: ${data.parent_name || 'Not provided'}\n`;
         emailBody += `Address: ${data.address || 'Not provided'}\n`;
         emailBody += `City & Zip: ${data.city_zip || 'Not provided'}\n`;
         emailBody += `Cell Number: ${data.cell_number || 'Not provided'}\n`;
         emailBody += `Alt Phone Number: ${data.alt_phone || 'Not provided'}\n`;
         emailBody += `Guardian's Email: ${data.guardian_email || 'Not provided'}\n\n`;
-        emailBody += `Liability Release: ${data.liability_release ? 'Yes' : 'No'}\n`;
-        emailBody += `Photo Permission: ${data.photo_permission ? 'Yes' : 'No'}\n\n`;
-        emailBody += 'SIGNATURE:\n';
+        
+        emailBody += '📝 PERMISSIONS & AGREEMENTS\n';
+        emailBody += '───────────────────────────────────────────────────────────\n';
+        emailBody += `Liability Release: ${data.liability_release ? '✅ Yes' : '❌ No'}\n`;
+        emailBody += `Photo Permission: ${data.photo_permission ? '✅ Yes' : '❌ No'}\n\n`;
+        
+        emailBody += '✍️ SIGNATURE\n';
+        emailBody += '───────────────────────────────────────────────────────────\n';
         emailBody += `Parent/Guardian Name: ${data.guardian_signature_name || 'Not provided'}\n`;
-        emailBody += `Date: ${data.signature_date || 'Not provided'}\n`;
+        emailBody += `Date: ${data.signature_date || 'Not provided'}\n\n`;
+        
+        emailBody += '═══════════════════════════════════════════════════════════\n';
+        emailBody += 'Thank you for registering for Blacktop Basketball Camp!\n';
+        emailBody += 'Questions? Contact: robertjanice@bellsouth.net';
 
         const subject = encodeURIComponent('Blacktop Basketball Camp Registration');
         const body = encodeURIComponent(emailBody);
@@ -105,7 +123,7 @@
       <!-- Primary, foolproof path -->
       <a class="download-btn" href="/blacktop-camp-registration-2023.pdf" download aria-label="Download the registration form">
         <span class="download-icon">⬇️</span>
-        Download &amp; Fill the Registration Form
+        Download PDF (Reference Only)
       </a>
 
       <!-- Registration Form -->
@@ -236,8 +254,8 @@
         </main>
         
         <div class="footer">
-      <strong>Instructions:</strong> Fill out the form above, then click "Email Registration" to send it directly, or "Download PDF" to get a PDF version.<br/>
-      Questions? Email us at: <a class="email-link" href="mailto:robertjanice@bellsouth.net">robertjanice@bellsouth.net</a>
+              <strong>Instructions:</strong> Fill out the form above, then click "Email Registration" to send it directly. The PDF download is for reference only - use the form above to register.<br/>
+        Questions? Email us at: <a class="email-link" href="mailto:robertjanice@bellsouth.net">robertjanice@bellsouth.net</a>
     </div>
     </div>
 </body>

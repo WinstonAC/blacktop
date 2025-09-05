@@ -95,7 +95,7 @@
         emailBody += 'Questions? Contact: robertjanice@bellsouth.net';
 
         const subject = encodeURIComponent('Blacktop Basketball Camp Registration');
-        const body = encodeURIComponent(emailBody);
+        const body = encodeURIComponent(emailBody.replace(/\n/g, "\r\n"));
         this.href = `mailto:robertjanice@bellsouth.net?subject=${subject}&body=${body}`;
       });
     });

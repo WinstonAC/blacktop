@@ -55,36 +55,36 @@
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
 
-        let emailBody = 'BLACKTOP BASKETBALL CAMP REGISTRATION\n\n';
+        let emailBody = 'BLACKTOP BASKETBALL CAMP REGISTRATION\r\n\r\n';
         
-        emailBody += 'PAYMENT INFORMATION:\n';
-        emailBody += `Paid Date: ${data.paid_date || 'Not provided'}\n`;
-        emailBody += `Amount Paid: ${data.amount_paid || 'Not provided'}\n`;
-        emailBody += `T-Shirt Size: ${data.shirt_size || 'Not provided'}\n\n`;
+        emailBody += 'PAYMENT INFORMATION:\r\n';
+        emailBody += `Paid Date: ${data.paid_date || 'Not provided'}\r\n`;
+        emailBody += `Amount Paid: ${data.amount_paid || 'Not provided'}\r\n`;
+        emailBody += `T-Shirt Size: ${data.shirt_size || 'Not provided'}\r\n\r\n`;
         
-        emailBody += 'PLAYER INFORMATION:\n';
-        emailBody += `Player First Name: ${data.player_first_name || 'Not provided'}\n`;
-        emailBody += `Player Last Name: ${data.player_last_name || 'Not provided'}\n`;
-        emailBody += `Age: ${data.age || 'Not provided'}\n`;
-        emailBody += `Date of Birth: ${data.dob || 'Not provided'}\n\n`;
+        emailBody += 'PLAYER INFORMATION:\r\n';
+        emailBody += `Player First Name: ${data.player_first_name || 'Not provided'}\r\n`;
+        emailBody += `Player Last Name: ${data.player_last_name || 'Not provided'}\r\n`;
+        emailBody += `Age: ${data.age || 'Not provided'}\r\n`;
+        emailBody += `Date of Birth: ${data.dob || 'Not provided'}\r\n\r\n`;
         
-        emailBody += 'PARENT/GUARDIAN INFORMATION:\n';
-        emailBody += `Parent Name: ${data.parent_name || 'Not provided'}\n`;
-        emailBody += `Address: ${data.address || 'Not provided'}\n`;
-        emailBody += `City & Zip: ${data.city_zip || 'Not provided'}\n`;
-        emailBody += `Cell Number: ${data.cell_number || 'Not provided'}\n`;
-        emailBody += `Alt Phone: ${data.alt_phone || 'Not provided'}\n`;
-        emailBody += `Guardian Email: ${data.guardian_email || 'Not provided'}\n\n`;
+        emailBody += 'PARENT/GUARDIAN INFORMATION:\r\n';
+        emailBody += `Parent Name: ${data.parent_name || 'Not provided'}\r\n`;
+        emailBody += `Address: ${data.address || 'Not provided'}\r\n`;
+        emailBody += `City & Zip: ${data.city_zip || 'Not provided'}\r\n`;
+        emailBody += `Cell Number: ${data.cell_number || 'Not provided'}\r\n`;
+        emailBody += `Alt Phone: ${data.alt_phone || 'Not provided'}\r\n`;
+        emailBody += `Guardian Email: ${data.guardian_email || 'Not provided'}\r\n\r\n`;
         
-        emailBody += 'PERMISSIONS:\n';
-        emailBody += `Liability Release: ${data.liability_release ? 'Yes' : 'No'}\n`;
-        emailBody += `Photo Permission: ${data.photo_permission ? 'Yes' : 'No'}\n\n`;
+        emailBody += 'PERMISSIONS:\r\n';
+        emailBody += `Liability Release: ${data.liability_release ? 'Yes' : 'No'}\r\n`;
+        emailBody += `Photo Permission: ${data.photo_permission ? 'Yes' : 'No'}\r\n\r\n`;
         
-        emailBody += 'SIGNATURE:\n';
-        emailBody += `Parent/Guardian Name: ${data.guardian_signature_name || 'Not provided'}\n`;
-        emailBody += `Date: ${data.signature_date || 'Not provided'}\n\n`;
+        emailBody += 'SIGNATURE:\r\n';
+        emailBody += `Parent/Guardian Name: ${data.guardian_signature_name || 'Not provided'}\r\n`;
+        emailBody += `Date: ${data.signature_date || 'Not provided'}\r\n\r\n`;
         
-        emailBody += 'Thank you for registering!\n';
+        emailBody += 'Thank you for registering!\r\n';
         emailBody += 'Questions? Contact: robertjanice@bellsouth.net';
 
         const subject = encodeURIComponent('Blacktop Basketball Camp Registration');

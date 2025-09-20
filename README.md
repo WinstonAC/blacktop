@@ -1,24 +1,25 @@
 # Blacktop Basketball Camp - Registration Page
 
-A simple, mobile-friendly webpage for parents to download the basketball camp registration form. Designed with a dark theme and clear instructions for easy use.
+A mobile-friendly web form for parents to register their children for the basketball camp. Features a complete online registration form with automatic email functionality.
 
 ## Project Structure
 
 ```
 blacktop-download/
-  |-- index.html          # Main registration page (dark theme)
-  |-- public/
-       |-- registration.pdf   # Fillable PDF registration form
+  |-- index.html          # Main registration form page
+  |-- public/             # Static assets folder
   |-- README.md           # This file
+  |-- vercel.json         # Vercel deployment configuration
 ```
 
 ## Features
 
-- 🎨 Dark charcoal background with white text
-- 📱 Fully responsive design for all devices
-- 📋 Clear numbered instructions
-- 🔵 Prominent blue download button with icon
-- 📧 Direct email links to robertjanice@bellsouth.net
+- 📝 Complete online registration form
+- 📱 Mobile-first responsive design for all devices
+- ✉️ Automatic email generation with form data
+- 🎯 Form validation for required fields
+- 🏀 Professional basketball camp branding
+- 📧 Direct email integration to robertjanice@bellsouth.net
 - 🚀 Optimized for Vercel deployment
 
 ## Quick Deploy to Vercel
@@ -36,25 +37,29 @@ blacktop-download/
 3. Import the repository
 4. Deploy automatically
 
+## Form Sections
+
+The registration form includes:
+- **Player Information**: Name, age, date of birth, t-shirt size
+- **Parent/Guardian Information**: Contact details and address
+- **Payment Information**: Payment date, amount, and payment methods
+- **Permissions**: Liability release and photo permission
+- **Signature**: Electronic signature with date
+
 ## Customization
 
-### Colors
-- Background: `#2c3e50` (dark charcoal)
-- Card: `#34495e` (lighter charcoal)
-- Button: `#3498db` (bright blue)
-- Text: `#ecf0f1` (white/light gray)
-
 ### Content
-- Update the email address in both the instructions and footer
-- Modify the title or instructions as needed
+- Update the email address in the form submission
+- Modify form fields as needed
 - Change the basketball emoji to match your branding
 
 ## Important Notes
 
-1. **Replace the PDF**: Copy your actual `registration.pdf` file into the `public/` folder
-2. **Test the download**: Make sure the PDF downloads correctly before sharing
-3. **QR Code**: Point your Canva QR code to the deployed Vercel URL
-4. **Domain**: You can add a custom domain later in Vercel settings
+1. **Form Validation**: All required fields are validated before submission
+2. **Email Integration**: Form data is automatically formatted and opens in user's email client
+3. **Mobile Optimized**: Designed mobile-first for easy use on phones and tablets
+4. **QR Code**: Point your Canva QR code to the deployed Vercel URL
+5. **Domain**: You can add a custom domain later in Vercel settings
 
 ## Support
 

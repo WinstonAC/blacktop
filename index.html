@@ -7,30 +7,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="format-detection" content="telephone=no">
-    <title>2025 Blacktop Basketball Camp - Registration</title>
+    <title>Fall Blacktop Camp Registration</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        
-        /* Prevent text selection on mobile */
-        body {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        
-        /* Allow text selection in specific areas */
-        .instructions, .footer {
-            -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
-            user-select: text;
         }
         
         body {
@@ -39,9 +21,6 @@
             color: #2c3e50;
             line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 20px;
             margin: 0;
             -webkit-font-smoothing: antialiased;
@@ -52,19 +31,26 @@
             background-color: white;
             border-radius: 15px;
             padding: 40px;
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
-            text-align: center;
+            margin: 0 auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border: 1px solid #e9ecef;
-            margin: 0 auto;
-            box-sizing: border-box;
         }
         
         h1 {
             font-size: 2.2rem;
             margin-bottom: 30px;
             color: #2c3e50;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .basketball-icon {
+            font-size: 2.5rem;
         }
         
         .instructions {
@@ -95,95 +81,138 @@
             text-decoration: underline;
         }
         
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        
+        
+        .form-section {
+            margin: 30px 0;
+            padding: 25px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .form-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background-color: white;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .form-group input[type="date"] {
+            position: relative;
+        }
+        
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        
+        .form-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .submit-section {
+            background-color: #e8f5e8;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
             padding: 18px 36px;
             font-size: 1.2rem;
             font-weight: 600;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin: 30px 0;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
             border: none;
+            border-radius: 50px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
             min-height: 56px;
             width: 100%;
-            max-width: 320px;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.5px;
+            max-width: 300px;
         }
         
-        .download-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(40, 167, 69, 0.5);
         }
         
-        .download-btn:hover::before {
-            left: 100%;
+        .submit-btn:active {
+            transform: translateY(0);
         }
         
-        .download-btn:hover {
-            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
-        }
-        
-        .download-btn:active {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        .download-btn:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3), 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-        
-        /* Touch device optimizations */
-        @media (hover: none) and (pointer: coarse) {
-            .download-btn:hover {
-                transform: none;
-                box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-            }
-            
-            .download-btn:active {
-                transform: scale(0.98);
-                background-color: #2980b9;
-            }
-        }
-        
-        /* Ensure minimum touch target size */
-        .download-btn {
-            min-height: 44px; /* iOS minimum touch target */
-        }
-        
-        /* Improve email link touch targets */
-        .email-link {
-            padding: 4px 2px;
-            border-radius: 4px;
-            transition: background-color 0.2s ease;
-        }
-        
-        .email-link:hover,
-        .email-link:focus {
-            background-color: rgba(52, 152, 219, 0.1);
-        }
-        
-        .download-icon {
-            font-size: 1.4rem;
-            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+        .submit-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
         
         .footer {
@@ -192,9 +221,27 @@
             border-top: 1px solid #e9ecef;
             font-size: 0.95rem;
             color: #6c757d;
+            text-align: center;
         }
         
-        /* Large tablets and small desktops */
+        .required {
+            color: #dc3545;
+        }
+        
+        .consent-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+        
+        .size-indication {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 30px;
@@ -207,18 +254,18 @@
                 margin-bottom: 25px;
             }
             
-            .instructions {
+            .form-section {
                 padding: 20px;
                 margin: 25px 0;
             }
             
-            .instructions li {
-                font-size: 1rem;
-                margin-bottom: 12px;
+            .form-row,
+            .form-row-3 {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
         }
         
-        /* Mobile devices */
         @media (max-width: 600px) {
             body {
                 padding: 15px;
@@ -235,36 +282,17 @@
                 margin-bottom: 20px;
             }
             
-            .instructions {
+            .form-section {
                 padding: 18px;
                 margin: 20px 0;
-                border-radius: 8px;
             }
             
-            .instructions li {
-                font-size: 0.95rem;
-                margin-bottom: 10px;
-            }
-            
-            .download-btn {
-                padding: 18px 25px;
-                font-size: 1.1rem;
-                min-height: 55px;
-                margin: 25px 0;
-            }
-            
-            .footer {
-                font-size: 0.9rem;
-                margin-top: 25px;
+            .form-section h2 {
+                font-size: 1.3rem;
             }
         }
         
-        /* Small mobile devices */
         @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            
             .container {
                 padding: 20px 15px;
                 margin: 5px;
@@ -272,100 +300,288 @@
             
             h1 {
                 font-size: 1.6rem;
-                margin-bottom: 18px;
             }
             
-            .instructions {
+            .form-section {
                 padding: 15px;
                 margin: 18px 0;
-            }
-            
-            .instructions li {
-                font-size: 0.9rem;
-                margin-bottom: 8px;
-            }
-            
-            .download-btn {
-                padding: 16px 20px;
-                font-size: 1rem;
-                min-height: 50px;
-                margin: 20px 0;
-            }
-            
-            .footer {
-                font-size: 0.85rem;
-                margin-top: 20px;
-            }
-        }
-        
-        /* Extra small devices */
-        @media (max-width: 360px) {
-            .container {
-                padding: 18px 12px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .download-btn {
-                padding: 14px 18px;
-                font-size: 0.95rem;
-            }
-        }
-        
-        /* Landscape orientation on mobile */
-        @media (max-height: 500px) and (orientation: landscape) {
-            body {
-                padding: 10px;
-            }
-            
-            .container {
-                padding: 20px;
-                margin: 10px;
-            }
-            
-            h1 {
-                margin-bottom: 15px;
-            }
-            
-            .instructions {
-                margin: 15px 0;
-            }
-            
-            .download-btn {
-                margin: 15px 0;
-            }
-        }
-        
-        /* High DPI displays */
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            .download-btn {
-                box-shadow: 0 2px 8px rgba(52, 152, 219, 0.4);
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🏀 2025 Blacktop Basketball Camp Registration</h1>
+        <h1>
+            <span class="basketball-icon">🏀</span>
+            Fall Blacktop Camp Registration
+        </h1>
         
         <div class="instructions">
-            <ol>
-                <li><strong>Download</strong> the registration form below.</li>
-                <li><strong>Fill it out</strong> on your device.</li>
-                <li><strong>Save and email</strong> to: <a href="mailto:robertjanice@bellsouth.net" class="email-link">robertjanice@bellsouth.net</a></li>
-            </ol>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 0;">
+                <strong>Fill out the form below and email directly!</strong> Works on all devices - phones, tablets, and computers.
+            </p>
         </div>
         
-        <a href="registration.pdf" class="download-btn" download>
-            <span class="download-icon" aria-hidden="true">📥</span>
-            <span>Download Registration Form</span>
-        </a>
+        <form id="registrationForm" class="form-section">
+            <h2>BLACKTOP BASKETBALL CAMP REGISTRATION FORM</h2>
+            
+            <!-- PLAYER INFORMATION -->
+            <div class="form-section">
+                <h2>PLAYER INFORMATION</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="playerFirstName">Player First Name: <span class="required">*</span></label>
+                        <input type="text" id="playerFirstName" name="playerFirstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="playerLastName">Player Last Name: <span class="required">*</span></label>
+                        <input type="text" id="playerLastName" name="playerLastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Age: <span class="required">*</span></label>
+                        <input type="number" id="age" name="age" min="1" max="18" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth: <span class="required">*</span></label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tshirtSize">T-Shirt Size: <span class="required">*</span></label>
+                    <select id="tshirtSize" name="tshirtSize" required>
+                        <option value="">Select Size</option>
+                        <option value="Youth XS">Youth XS</option>
+                        <option value="Youth S">Youth S</option>
+                        <option value="Youth M">Youth M</option>
+                        <option value="Youth L">Youth L</option>
+                        <option value="Youth XL">Youth XL</option>
+                        <option value="Adult S">Adult S</option>
+                        <option value="Adult M">Adult M</option>
+                        <option value="Adult L">Adult L</option>
+                        <option value="Adult XL">Adult XL</option>
+                        <option value="Adult XXL">Adult XXL</option>
+                    </select>
+                    <div class="size-indication">Please Indicate Youth or Adult Size</div>
+                </div>
+            </div>
+            
+            <!-- PARENT/GUARDIAN INFORMATION -->
+            <div class="form-section">
+                <h2>PARENT/GUARDIAN INFORMATION</h2>
+                
+                <div class="form-group">
+                    <label for="parentName">Parent Name: <span class="required">*</span></label>
+                    <input type="text" id="parentName" name="parentName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address: <span class="required">*</span></label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cityZip">City & Zip: <span class="required">*</span></label>
+                    <input type="text" id="cityZip" name="cityZip" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cellNumber">Cell Number: <span class="required">*</span></label>
+                        <input type="tel" id="cellNumber" name="cellNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="altPhone">Alt Phone:</label>
+                        <input type="tel" id="altPhone" name="altPhone">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guardianEmail">Guardian Email: <span class="required">*</span></label>
+                    <input type="email" id="guardianEmail" name="guardianEmail" required>
+                </div>
+            </div>
+            
+            <!-- PAYMENT INFORMATION -->
+            <div class="form-section">
+                <h2>PAYMENT INFORMATION</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="paidDate">Paid Date: <span class="required">*</span></label>
+                        <input type="date" id="paidDate" name="paidDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amountPaid">Amount Paid: <span class="required">*</span></label>
+                        <input type="number" id="amountPaid" name="amountPaid" step="0.01" min="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cashPaidOnsite">Cash Paid onsite:</label>
+                        <input type="number" id="cashPaidOnsite" name="cashPaidOnsite" step="0.01" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="cashapp">CashApp:</label>
+                        <input type="text" id="cashapp" name="cashapp">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PERMISSIONS -->
+            <div class="form-section">
+                <h2>PERMISSIONS</h2>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="liabilityRelease" name="liabilityRelease" required>
+                        <label for="liabilityRelease">
+                            <strong>Liability Release:</strong> I acknowledge and fully understand that each participant will be engaging in activities that may involve risk or serious injury, including permanent disability and death, and severe social and economic losses which might result not only from their own actions, inactions or negligence, but the actions, inactions or negligence of others, the rules of play, or the condition of the premises or of any equipment used. <span class="required">*</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="photoPermission" name="photoPermission">
+                        <label for="photoPermission">
+                            <strong>Photo Permission:</strong> I grant permission for my child's photo to be used in camp promotional materials.
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="consent-text">
+                    <strong>Electronic Signature Consent:</strong> By checking the "YES" button, I am signing this document electronically. I agree that my electronic signature is the legal equivalent of my manual/handwritten signature on this document. By checking "YES" using any device, means, or action, I consent to the legally binding terms and conditions of this document. I further agree that my signature on this document is as valid as if I signed the document in writing. If I am signing this document on behalf of a minor, I represent and warrant that I am the minor's parent or legal guardian.
+                </div>
+            </div>
+            
+            <!-- SIGNATURE -->
+            <div class="form-section">
+                <h2>SIGNATURE</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="parentGuardianName">Parent/Guardian Name: <span class="required">*</span></label>
+                        <input type="text" id="parentGuardianName" name="parentGuardianName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signatureDate">Date: <span class="required">*</span></label>
+                        <input type="date" id="signatureDate" name="signatureDate" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="submit-section">
+                <p style="margin-bottom: 20px; font-weight: bold;">By submitting this form, I acknowledge that I have read and agree to the terms above.</p>
+                <button type="submit" class="submit-btn">
+                    📧 Email Registration
+                </button>
+            </div>
+        </form>
         
         <div class="footer">
-            Having trouble? Email us directly at <a href="mailto:robertjanice@bellsouth.net" class="email-link">robertjanice@bellsouth.net</a>.
+            <p><strong>Thank you for registering!</strong></p>
+            <p>Questions? Contact: <a href="mailto:robertjanice@bellsouth.net" class="email-link">robertjanice@bellsouth.net</a></p>
         </div>
     </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Validate required fields
+            const requiredFields = ['playerFirstName', 'playerLastName', 'age', 'dateOfBirth', 'tshirtSize', 'parentName', 'address', 'cityZip', 'cellNumber', 'guardianEmail', 'paidDate', 'amountPaid', 'liabilityRelease', 'parentGuardianName', 'signatureDate'];
+            
+            for (let field of requiredFields) {
+                if (!data[field]) {
+                    alert(`Please fill in the required field: ${field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}`);
+                    return;
+                }
+            }
+            
+            // Format email content
+            let emailContent = `BLACKTOP BASKETBALL CAMP REGISTRATION FORM\n`;
+            emailContent += `==========================================\n\n`;
+            
+            emailContent += `PLAYER INFORMATION\n`;
+            emailContent += `------------------------------------------\n`;
+            emailContent += `Player First Name: ${data.playerFirstName}\n`;
+            emailContent += `Player Last Name: ${data.playerLastName}\n`;
+            emailContent += `Age: ${data.age}\n`;
+            emailContent += `Date of Birth: ${data.dateOfBirth}\n`;
+            emailContent += `T-Shirt Size: ${data.tshirtSize}\n\n`;
+            
+            emailContent += `PARENT/GUARDIAN INFORMATION\n`;
+            emailContent += `------------------------------------------\n`;
+            emailContent += `Parent Name: ${data.parentName}\n`;
+            emailContent += `Address: ${data.address}\n`;
+            emailContent += `City & Zip: ${data.cityZip}\n`;
+            emailContent += `Cell Number: ${data.cellNumber}\n`;
+            emailContent += `Alt Phone: ${data.altPhone || 'N/A'}\n`;
+            emailContent += `Guardian Email: ${data.guardianEmail}\n\n`;
+            
+            emailContent += `PAYMENT INFORMATION\n`;
+            emailContent += `------------------------------------------\n`;
+            emailContent += `Paid Date: ${data.paidDate}\n`;
+            emailContent += `Amount Paid: $${data.amountPaid}\n`;
+            emailContent += `Cash Paid onsite: ${data.cashPaidOnsite ? '$' + data.cashPaidOnsite : 'N/A'}\n`;
+            emailContent += `CashApp: ${data.cashapp || 'N/A'}\n\n`;
+            
+            emailContent += `PERMISSIONS\n`;
+            emailContent += `------------------------------------------\n`;
+            emailContent += `Liability Release: ${data.liabilityRelease ? 'YES' : 'NO'}\n`;
+            emailContent += `Photo Permission: ${data.photoPermission ? 'YES' : 'NO'}\n\n`;
+            
+            emailContent += `SIGNATURE\n`;
+            emailContent += `------------------------------------------\n`;
+            emailContent += `Parent/Guardian Name: ${data.parentGuardianName}\n`;
+            emailContent += `Date: ${data.signatureDate}\n\n`;
+            
+            emailContent += `==========================================\n`;
+            emailContent += `Thank you for registering!\n`;
+            emailContent += `Questions? Contact: robertjanice@bellsouth.net\n`;
+            
+            // Create mailto link
+            const subject = encodeURIComponent('Blacktop Basketball Camp Registration - ' + data.playerFirstName + ' ' + data.playerLastName);
+            const body = encodeURIComponent(emailContent);
+            const mailtoLink = `mailto:robertjanice@bellsouth.net?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Registration form prepared! Your email client should open with the completed form. If it doesn\'t open automatically, please copy the form data and email it to robertjanice@bellsouth.net');
+        });
+        
+        // Set today's date as default for paid date and signature date
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('paidDate').value = today;
+        document.getElementById('signatureDate').value = today;
+        
+        // Auto-calculate age from date of birth
+        document.getElementById('dateOfBirth').addEventListener('change', function() {
+            const birthDate = new Date(this.value);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            if (age >= 0 && age <= 18) {
+                document.getElementById('age').value = age;
+            }
+        });
+    </script>
 </body>
 </html>

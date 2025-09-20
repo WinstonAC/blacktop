@@ -143,7 +143,8 @@
             cursor: pointer;
         }
         
-        .form-group input[type="checkbox"] {
+        .form-group input[type="checkbox"],
+        .form-group input[type="radio"] {
             width: auto;
             margin-right: 10px;
             transform: scale(1.2);
@@ -423,12 +424,22 @@
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="cashPaidOnsite">Cash Paid onsite:</label>
-                        <input type="number" id="cashPaidOnsite" name="cashPaidOnsite" step="0.01" min="0">
+                        <label>Cash Paid onsite:</label>
+                        <div class="checkbox-group">
+                            <input type="radio" id="cashPaidOnsiteYes" name="cashPaidOnsite" value="Yes">
+                            <label for="cashPaidOnsiteYes">Yes</label>
+                            <input type="radio" id="cashPaidOnsiteNo" name="cashPaidOnsite" value="No" checked>
+                            <label for="cashPaidOnsiteNo">No</label>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="cashapp">CashApp:</label>
-                        <input type="text" id="cashapp" name="cashapp">
+                        <label>CashApp:</label>
+                        <div class="checkbox-group">
+                            <input type="radio" id="cashappYes" name="cashapp" value="Yes">
+                            <label for="cashappYes">Yes</label>
+                            <input type="radio" id="cashappNo" name="cashapp" value="No" checked>
+                            <label for="cashappNo">No</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -533,8 +544,8 @@
             emailContent += `------------------------------------------\n`;
             emailContent += `Paid Date: ${data.paidDate}\n`;
             emailContent += `Amount Paid: $${data.amountPaid}\n`;
-            emailContent += `Cash Paid onsite: ${data.cashPaidOnsite ? '$' + data.cashPaidOnsite : 'N/A'}\n`;
-            emailContent += `CashApp: ${data.cashapp || 'N/A'}\n\n`;
+            emailContent += `Cash Paid onsite: ${data.cashPaidOnsite || 'No'}\n`;
+            emailContent += `CashApp: ${data.cashapp || 'No'}\n\n`;
             
             emailContent += `PERMISSIONS\n`;
             emailContent += `------------------------------------------\n`;

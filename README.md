@@ -14,13 +14,15 @@ blacktop-download/
 
 ## Features
 
-- 📝 Complete online registration form
-- 📱 Mobile-first responsive design for all devices
-- ✉️ Automatic email generation with form data
-- 🎯 Form validation for required fields
-- 🏀 Professional basketball camp branding
-- 📧 Direct email integration to robertjanice@bellsouth.net
-- 🚀 Optimized for Vercel deployment
+- 📝 Fall Camp online registration form
+- 📱 Mobile-first responsive design
+- ✉️ Submits to Google Apps Script (sheet + automatic emails)
+- 🎯 Validation, permission checkboxes, minimum age 3
+- 🏀 Fall Blacktop Camp branding
+- 📧 Organizer: robertjanice@bellsouth.net; guardian thank-you email
+- 🚀 Static deploy on Vercel (see `vercel.json`)
+
+See [APPS_SCRIPT_DEPLOYMENT.md](APPS_SCRIPT_DEPLOYMENT.md) for Google Sheet + Apps Script setup.
 
 ## Quick Deploy to Vercel
 

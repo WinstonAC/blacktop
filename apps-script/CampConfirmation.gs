@@ -75,7 +75,59 @@ function campSubmissionValid(data) {
   if (!data.parentGuardianName || !data.signatureDate) return false;
   if (data.liabilityRelease !== 'Yes' || data.photoPermission !== 'Yes') return false;
   if (!/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/.test(String(data.guardianEmail || ''))) return false;
+  var onsite = data.cashPaidOnsite === 'Yes';
+  var cashapp = data.cashapp === 'Yes';
+  if (onsite === cashapp) return false;
   return true;
+}
+
+function sanitizeCampCell_(value) {
+  return typeof value === 'string' && /^[=+@-]/.test(value) ? "'" + value : (value || '');
+}
+
+function campFieldMap_(data, id) {
+  return {
+    'Timestamp': new Date(),
+    'Player First Name': data.playerFirstName,
+    'Player Last Name': data.playerLastName,
+    'Date of Birth': data.dateOfBirth || '',
+    'Age': data.age || '',
+    'T-Shirt Size': data.tshirtSize || '',
+    'Parent First Name': data.parentFirstName,
+    'Parent Last Name': data.parentLastName,
+    'Address': data.address || '',
+    'City': data.city || '',
+    'State': data.state || '',
+    'Zip': data.zip || '',
+    'Cell Number': data.cellNumber || '',
+    'Alt Phone': data.altPhone || '',
+    'Guardian Email': data.guardianEmail || '',
+    'Paid Date': data.paidDate || '',
+    'Amount Paid': data.amountPaid || '',
+    'Cash Paid Onsite': data.cashPaidOnsite || 'No',
+    'CashApp': data.cashapp || 'No',
+    'Liability Release': data.liabilityRelease || 'No',
+    'Photo Permission': data.photoPermission || 'No',
+    'Parent/Guardian Signature Name': data.parentGuardianName || '',
+    'Signature Date': data.signatureDate || '',
+    'Blacktop registration ID': id || ''
+  };
+}
+
+function headerColumnIndex_(headers, name) {
+  var i = headers.indexOf(name);
+  return i >= 0 ? i + 1 : 0;
+}
+
+function buildCampRowFromHeaders_(sheet, data, id) {
+  var width = Math.max(sheet.getLastColumn(), 1);
+  var headers = sheet.getRange(1, 1, 1, width).getValues()[0];
+  var map = campFieldMap_(data, id);
+  return headers.map(function (h) {
+    var key = String(h || '').trim();
+    if (map[key] !== undefined) return sanitizeCampCell_(map[key]);
+    return '';
+  });
 }
 
 function handleSubmission(e) {
@@ -118,42 +170,22 @@ function handleSubmission(e) {
     let rowNumber;
     if (previous) {
       rowNumber = previous.getRow();
-      const original = sheet.getRange(rowNumber, 2, 1, 3).getDisplayValues()[0];
-      if (original[0] !== data.playerFirstName || original[1] !== data.playerLastName ||
-          sheet.getRange(rowNumber, 15).getDisplayValue() !== data.guardianEmail) {
+      var firstCol = headerColumnIndex_(headers, 'Player First Name');
+      var lastCol = headerColumnIndex_(headers, 'Player Last Name');
+      var emailCol = headerColumnIndex_(headers, 'Guardian Email');
+      if (!firstCol || !lastCol || !emailCol) return registrationReceipt(false);
+      if (sheet.getRange(rowNumber, firstCol).getDisplayValue() !== data.playerFirstName ||
+          sheet.getRange(rowNumber, lastCol).getDisplayValue() !== data.playerLastName ||
+          sheet.getRange(rowNumber, emailCol).getDisplayValue() !== data.guardianEmail) {
         return registrationReceipt(false);
       }
     } else {
-      const row = [
-        new Date(),
-        data.playerFirstName,
-        data.playerLastName,
-        data.dateOfBirth || '',
-        data.age || '',
-        data.tshirtSize || '',
-        data.parentFirstName,
-        data.parentLastName,
-        data.address || '',
-        data.city || '',
-        data.state || '',
-        data.zip || '',
-        data.cellNumber || '',
-        data.altPhone || '',
-        data.guardianEmail || '',
-        data.paidDate || '',
-        data.amountPaid || '',
-        data.cashPaidOnsite || 'No',
-        data.cashapp || 'No',
-        data.liabilityRelease || 'No',
-        data.photoPermission || 'No',
-        data.parentGuardianName || '',
-        data.signatureDate || ''
-      ];
-      while (row.length < idColumn) row.push('');
+      var row = buildCampRowFromHeaders_(sheet, data, id);
+      if (idColumn > row.length) {
+        while (row.length < idColumn) row.push('');
+      }
       row[idColumn - 1] = id;
-      sheet.appendRow(row.map(function (value) {
-        return typeof value === 'string' && /^[=+@-]/.test(value) ? "'" + value : (value || '');
-      }));
+      sheet.appendRow(row);
       rowNumber = sheet.getLastRow();
       deliveryColumns.forEach(function (column) {
         sheet.getRange(rowNumber, column).setValue('pending');
